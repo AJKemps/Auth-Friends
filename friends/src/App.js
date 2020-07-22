@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Switch, Route, Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //Components
 import LoginForm from "./components/loginForm";
+import Friends from "./components/Friends";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -14,7 +16,8 @@ function App() {
           <Link to="/protected">Protected Route</Link>
         </header>
         <Switch>
-          <Route component={LoginForm} />
+          <Route path="/login" component={LoginForm} />
+          <PrivateRoute exact path="/protected" component={Friends} />
         </Switch>
       </div>
     </Router>

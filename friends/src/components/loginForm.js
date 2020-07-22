@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const initialCredentials = {
   username: "",
   password: "",
 };
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [formValues, setFormValues] = useState(initialCredentials);
 
   const handleChanges = (event) => {
@@ -15,11 +16,24 @@ const LoginForm = () => {
     });
   };
 
+  const login = (event) => {
+    event.preventDefault();
+    console.log("LOGIN CREDENTIALS:", formValues);
+    axios
+      .post("http://localhost:5000/api/login", formValues)
+      .then((res) => {
+        console.log("API RESPONSE:", res);
+        localStorage.setItem("token", res.data.payload);
+        props.history.push("/protected");
+      })
+      .catch((err) => console.log("API ERROR:", { err }));
+  };
+
   return (
     <div className="loginForm">
-      <form>
-        <input onChange={handleChanges} type="text"></input>
-        <input onChange={handleChanges} type="password"></input>
+      <form onSubmit={login}>
+        <input onChange={handleChanges} type="text" name="username"></input>
+        <input onChange={handleChanges} type="password" name="password"></input>
         <button type="submit">Login</button>
       </form>
     </div>
