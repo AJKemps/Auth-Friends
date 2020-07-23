@@ -32,8 +32,20 @@ const LoginForm = (props) => {
   return (
     <div className="loginForm">
       <form onSubmit={login}>
-        <input onChange={handleChanges} type="text" name="username"></input>
-        <input onChange={handleChanges} type="password" name="password"></input>
+        <div className="inputGroup">
+          <label>Username</label>
+          <input onChange={handleChanges} type="text" name="username"></input>
+        </div>
+
+        <div className="inputGroup">
+          <label>Password</label>
+          <input
+            onChange={handleChanges}
+            type="password"
+            name="password"
+          ></input>
+        </div>
+
         <button type="submit">Login</button>
       </form>
     </div>

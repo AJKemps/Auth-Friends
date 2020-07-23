@@ -12,8 +12,9 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
+          <h1>Friend Finder</h1>
           <Link to="/login">Login</Link>
-          <Link to="/protected">Protected Route</Link>
+          <Link to="/protected">Route</Link>
         </header>
         <Switch>
           <Route path="/login" component={LoginForm} />
