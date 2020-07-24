@@ -20,7 +20,7 @@ const LoginForm = (props) => {
     event.preventDefault();
     console.log("LOGIN CREDENTIALS:", formValues);
     axios
-      .post("http://localhost:5000/api/login", formValues)
+      .post("http://localhost:5001/api/login", formValues)
       .then((res) => {
         console.log("API RESPONSE:", res);
         localStorage.setItem("token", res.data.payload);

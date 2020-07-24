@@ -50,8 +50,12 @@ const Friends = () => {
       .catch((err) => console.log("ADD FRIEND ERR:", err));
   };
 
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
+  const toggleShowMore = (index) => {
+    setShowMore(index);
+  };
+
+  const toggleShowLess = () => {
+    setShowMore(null);
   };
 
   if (addFriend === true) {
@@ -132,14 +136,14 @@ const Friends = () => {
               <h3>{friend.name}</h3>
 
               <div>
-                {showMore ? (
+                {showMore === index ? (
                   <div>
                     <p>{friend.age} years old</p>
                     <p>{friend.email}</p>
-                    <p onClick={toggleShowMore}>Show Less</p>
+                    <p onClick={toggleShowLess}>Show Less</p>
                   </div>
                 ) : (
-                  <p onClick={toggleShowMore}>Show More</p>
+                  <p onClick={() => toggleShowMore(index)}>Show More</p>
                 )}
               </div>
             </motion.div>
